@@ -50,7 +50,12 @@ the project i rest mimics `ft_printf` and he subject the project and description
     - [va_arg](https://en.cppreference.com/c/variadic/va_arg) accesses the next variadic function argument
     - [va_copy](https://en.cppreference.com/c/variadic/va_copy) makes a copy of the variadic function arguments
     - [va_end](https://en.cppreference.com/c/variadic/va_end) ends traversal of the variadic function arguments
-
+### Argument Access Macros [^5]
+    - The type va_list is used for argument pointer variables
+    - void va_start (va_list ap, last-required)
+    - type va_arg (va_list ap, type)
+    - void va_end (va_list ap)
+    - void va_copy (va_list dest, va_list src)
 > Example [^1]
 ```
 #include <stdarg.h>
@@ -84,7 +89,7 @@ void simple_printf(const char* fmt, ...)
                 printf("%f\n", d);
                 break;
             }
-            default:
+            default
                 puts("Unknown formatter!");
                 goto END;
         }
@@ -236,6 +241,72 @@ C conversios[^4]
     - Format String Parsing
     - Character Classification in C
 
+> Example of Parsing a Template String
+```
+/* Test whether the nargs specified objects
+   in the vector args are valid
+   for the format string format:
+   if so, return 1.
+   If not, return 0 after printing an error message.  */
+
+int
+validate_args (char *format, int nargs, OBJECT *args)
+{
+  int *argtypes;
+  int nwanted;
+
+  /* Get the information about the arguments.
+     Each conversion specification must be at least two characters
+     long, so there cannot be more specifications than half the
+     length of the string.  */
+
+  argtypes = (int *) alloca (strlen (format) / 2 * sizeof (int));
+  nwanted = parse_printf_format (format, nargs, argtypes);
+
+  /* Check the number of arguments.  */
+  if (nwanted > nargs)
+    {
+      error ("too few arguments (at least %d required)", nwanted);
+      return 0;
+    }
+
+  /* Check the C type wanted for each argument
+     and see if the object given is suitable.  */
+  for (i = 0; i < nwanted; i++)
+    {
+      int wanted;
+
+      if (argtypes[i] & PA_FLAG_PTR)
+	wanted = STRUCTURE;
+      else
+	switch (argtypes[i] & ~PA_FLAG_MASK)
+	  {
+	  case PA_INT:
+	  case PA_FLOAT:
+	  case PA_DOUBLE:
+	    wanted = NUMBER;
+	    break;
+	  case PA_CHAR:
+	    wanted = CHAR;
+	    break;
+	  case PA_STRING:
+	    wanted = STRING;
+	    break;
+	  case PA_POINTER:
+	    wanted = STRUCTURE;
+	    break;
+	  }
+      if (TYPE (args[i]) != wanted)
+	{
+	  error ("type mismatch for arg number %d", i);
+	  return 0;
+	}
+    }
+  return 1;
+}
+
+```
+
 > Step 6: `Function Pointers` and `Conversion Handlers`
 
 ## Research questions
@@ -267,7 +338,6 @@ C conversios[^4]
     - [] %x
     - [] %X
     - [] %%
-
 ### String edge cases
     - [] Empty string
     - [] Null string pointer
@@ -308,10 +378,10 @@ C conversios[^4]
 [^2]: [printf](https://en.cppreference.com/c/io/fprintf)
 [^3]: [https://man7.org/linux/man-pages/man2/write.2.html]
 [^4]: [https://en.cppreference.com/w/c/language/conversion]
+[^5]: [https://sourceware.org/glibc/manual/latest/html_mono/libc.html#Calling-Variadics]
 
 
-
-
+[What are variadic functions in C?](https://medium.com/@SergioPietri/what-are-variadic-functions-in-c-6205e26c729f)
 [The GNU C Library](https://sourceware.org/glibc/manual/latest/html_mono/libc.html)
 
 
