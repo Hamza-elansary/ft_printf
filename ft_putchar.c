@@ -5,17 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/01 20:27:53 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/01 20:38:12 by hael-ans         ###   ########.fr       */
+/*   Created: 2026/11/02 20:25:00 by hael-ans          #+#    #+#             */
+/*   Updated: 2026/11/04 09:27:31 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libftprintf.h"
 
-#include "libdeflate.h"
-
-void	ft_putchar(int ch)
+int	ft_putchar(int c)
 {
-	unsigned char	c;
-
-	c = (unsigned char) ch;
-	write(1, &c, 1);
+	return (write(1, &c,1));
 }

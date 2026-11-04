@@ -5,46 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/01 17:01:36 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/01 20:55:01 by hael-ans         ###   ########.fr       */
+/*   Created: 2026/11/02 23:43:20 by hael-ans          #+#    #+#             */
+/*   Updated: 2026/11/04 09:54:47 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libdeflate.h"
+#include "libftprintf.h"
 
-int	ft_parsing(const char *str)
+int	ft_parsing(int format, va_list args)
 {
-	size_t	index;
+	int	sing;
 
-	index = 0;
-	while (str[index])
-	{
-		if (str[index] == '%' && str[index+1] == 'c')
-			ft_putchar(65);
-		else if (str[index] == '%' && str[index+1] == 's')
-			return (2);	
-		else if (str[index] == '%' && str[index+1] == 'p')
-			return (3);
-		else if (str[index] == '%' && str[index+1] == 'd')
-			return (4);
-		else if (str[index] == '%' && str[index+1] == 'i')
-			return (5);
-		else if (str[index] == '%' && str[index+1] == 'u')
-			return (6);
-		else if (str[index] == '%' && str[index+1] == 'X')
-			return (7);
-		else if (str[index] == '%' && str[index+1] == 'x')
-			return (8);
-		else if (str[index] == '%' && str[index+1] == '%')
-			return (9);ls
-				
-		else
-			write(1, &str[index], 1);
-		index++;
-		}
-	return 0;
-}
-
-int	main()
-{
-	printf("%d",ft_parsing("ABC %d DEF %s"));
+	sing = 0;
+	if (format == 'c')
+		sing = ft_putchar(va_arg(args, int));
+	else if (format == 's')
+		sing = ft_putstr(va_arg(args, char *));
+	else if (format == 'd' || format == 'i')
+		sing = ft_putnbr(va_arg(args, int));
+	else if (format == 'u')
+		sing = ft_putunsigned(va_arg(args,unsigned int));
+	else if (format == 'p')
+		sing = ft_putpoint(va_arg(args,void *));
+	else if (format == 'x')
+		sing = ft_puthex(va_arg(args, unsigned int));
+	else if (format == 'X')
+		sing = ft_puthexx(va_arg(args, unsigned int));
+	else if (format == '%')
+		sing = ft_putchar('%');
+	return sing;
 }

@@ -1,21 +1,21 @@
 *of the 42 curriculum by heal-ans*
 
-# Description
-the project i rest mimics `ft_printf` and he subject the project and description
-## Subject
-|Project anme       |libftprintf.a                                              |
-|:------------------|-----------------------------------------------------------:
-|Turn in files      |`Makefile, *.h, */*.h, *.c, */*.c`                         |
-|Makefile           |`NAME, all, clean, fclean, re`                             |
-|External functs.   |`malloc, free, write, va_start, va_arg, var_copy, va_end`  |
-|Libft authorized   |Yes                                                        |
-|Description        |write a libarary that contains `ft_printf`, a function     |
-|                   |that will mimic the original `printf()`                    |
+# FTPRINTF
+## Description
+### Subject
+| Project anme |    libftprintf.a |
+| :--- |:--- |
+| Turn in files | `Makefile, *.h, */*.h, *.c, */*.c` |
+| Makefile | `NAME, all, clean, fclean, re` |
+| External functs. | `malloc, free, write, va_start, va_arg, var_copy, va_end` |
+| Libft authorized | Yes |
+| Description | write a libarary that contains `ft_printf`, a function that will mimic the original `printf()` |
+
 
 - The prototype of `ft_printf` is;
     `int    ft_printf(const char *, ...);`
 - Here are the requirements:
-    -Do not implement the buffer management of the original `printf()`.
+    - Do not implement the buffer management of the original `printf()`.
     - Your founction has to handle the following conversiond: `%c`, `%s`, `%p`, `%d`, `%i`, `%u`, `%x`,`%X`
     - Your functoin will be compared against the original `printf`
     - You must use the command ar to create your library Using the libtool command is forbidden.
@@ -32,8 +32,8 @@ the project i rest mimics `ft_printf` and he subject the project and description
     - `%X` Prints a number in hexadecimal (base 16) uppercase format.
     - `%%` Prints a percent sign.
 
-> step 1: toward understanding `variadic function`
-## Research questions
+## Step 1: toward understanding `variadic function`
+### Research questions
     1. What is a variadic function in C?
     2. What does ... mean in a function declaration?
     3. What is va_list ?
@@ -111,8 +111,8 @@ a
 1.969000
 42.500000
 ```
-> Step 2: Understanding the original `printf` function [^2]
-## Research questions
+## Step 2: Understanding the original `printf` function [^2]
+### Research questions
 
     1 What is a format string?
     2 How does printf interpret conversion specifiers?
@@ -124,17 +124,17 @@ a
     8 What happens when the format string contains an invalid or incomplete conversion?
 ## Conversion specifiers
     
-|Specifier|Meaning|
-|:--------|:------|
-|%c       |Character|
-|%s       |String|
-|%p       |Pointer address|
-|%d       |Signed decimal integer|
-|%i       |Signed integer|
-|%u       |Unsigned decimal integer
-|%x       |%x Lowercase hexadecimal|
-|%X       |Uppercase hexadecimal|
-|%%       |Percent character|
+| Specifier | Meaning |
+| :--- | :--- |
+| %c | Character |
+| %s | String |
+| %p | Pointer address |
+| %d | Signed decimal integer |
+| %i | Signed integer |
+| %u | Unsigned decimal integer |
+| %x | %x Lowercase hexadecimal |
+| %X | Uppercase hexadecimal |
+| %% | Percent character |
 > Example printf 
 ```
 #include <inttypes.h>
@@ -198,7 +198,7 @@ Floating-point:
 Fixed-width types:
         Largest 32-bit value is 4294967295 or 0xffffffff
 ```
-> Step 3: write()[^3] — Output and System Calls
+## Step 3: write() — Output and System Calls
     
     1. What is a system call?
     2. What is a file descriptor?
@@ -208,7 +208,7 @@ Fixed-width types:
     6. How can write() fail?
     7. What is the difference between writing to a file and writing to a terminal?
 
-> Step 4: Number Representation — Decimal and Hexadecimal
+## Step 4: Number Representation — Decimal and Hexadecimal
 
 ## Research questions
 
@@ -223,9 +223,9 @@ Fixed-width types:
 
 C conversios[^4]
 
-> Step 5:  Parsing Algorithms — Reading the Format String
+## Step 5:  Parsing Algorithms — Reading the Format String
 
-## Research questions
+### Research questions
     1. What is parsing?
     2. What is string traversal?
     3. How can a program distinguish normal characters from % ?
@@ -307,9 +307,9 @@ validate_args (char *format, int nargs, OBJECT *args)
 
 ```
 
-> Step 6: `Function Pointers` and `Conversion Handlers`
+## Step 6: `Function Pointers` and `Conversion Handlers`
 
-## Research questions
+### Research questions
 
     1. What is a function pointer?
     2. How do you declare and call one?
@@ -324,11 +324,11 @@ validate_args (char *format, int nargs, OBJECT *args)
     - Array of Function Pointers in C
     - Dispatch Table in C
 
-> Step 7: Testing and Debugging
+## Step 7: Testing and Debugging
 
-## Testing checklist
+### Testing checklist
     
-### Basic conversions
+#### Basic conversions
     - [] %c
     - [] %s
     - [] %p
@@ -338,26 +338,26 @@ validate_args (char *format, int nargs, OBJECT *args)
     - [] %x
     - [] %X
     - [] %%
-### String edge cases
+#### String edge cases
     - [] Empty string
     - [] Null string pointer
     - [] Single-character string
     - [] Long string
     - [] Multiple string conversions
-### Integer edge cases
+#### Integer edge cases
     - [] 0
     - [] -1
     - [] INT_MAX
     - [] INT_MIN
     - [] UINT_MAX
     - [] Large hexadecimal values
-### Format-string cases
+#### Format-string cases
     - []  Empty format string
     - []  Format string without conversions
     - []  Consecutive `%%`
     - []  Multiple conversions
     - []  Trailing `%`
-### Return-value cases
+#### Return-value cases
     - [] Only normal characters
     - [] Only conversions
     - [] Mixed normal characters and conversions
@@ -372,8 +372,43 @@ validate_args (char *format, int nargs, OBJECT *args)
 
 
 # Instructions
+- tha command he compeal all file and he return libft.a
+```
+make
+```
+- This cleaning command removes all *.o files
+```
+make clean
+```
+- This depends on `clean`; once that has finished, it deletes `NAME` and everything else created by `make` or `make all`.
+```
+make fcean
+```
+
+- This command depends on other commands; it deletes everything that was created via `make` and then rebuilds it from scratch.
+```
+make re
+```
+- test main.c
+```
+#include "ft_printf.h"
+
+int main(void)
+{
+    ft_printf("Hello %s!\n", "42");
+    ft_printf("Number: %d\n", 42);
+    return (0);
+}
+```
+```
+cc main.c -L. -lftprintf -o test
+```
+
 
 # Resources
+> us AI
+- I only used AI to explain a few simple concepts that I didn't fully understand. I tried to follow the old-school approach by doing my own research and looking up information on Google to learn things independently.
+  
 [^1]: [Variadic](https://en.cppreference.com/c/variadic)
 [^2]: [printf](https://en.cppreference.com/c/io/fprintf)
 [^3]: [https://man7.org/linux/man-pages/man2/write.2.html]
@@ -382,6 +417,7 @@ validate_args (char *format, int nargs, OBJECT *args)
 
 
 [What are variadic functions in C?](https://medium.com/@SergioPietri/what-are-variadic-functions-in-c-6205e26c729f)
+
 [The GNU C Library](https://sourceware.org/glibc/manual/latest/html_mono/libc.html)
 
 
