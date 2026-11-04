@@ -1,4 +1,4 @@
-*of the 42 curriculum by heal-ans*
+*f the 42 curriculum by heal-ans*
 
 # FTPRINTF
 ## Description
