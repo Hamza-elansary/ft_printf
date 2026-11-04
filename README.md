@@ -56,6 +56,205 @@
     - type va_arg (va_list ap, type)
     - void va_end (va_list ap)
     - void va_copy (va_list dest, va_list src)
+
+- Figure 3.15: Register Save Area
+|Register| Offset|
+|:-------|:------|
+|%rdi 	 | 0 	|
+|%rsi    | 8	|
+|%rdx |16|
+|%rcx| 24|
+|%r8 | 32|
+|%r9 | 40|
+|%xmm0 |48|
+|%xmm1 | 64|
+|...|...|
+|%xmm15| 288|
+> The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
+`Figure 3.15`
+```
+typedef struct {
+	unsigned int gp_offset;
+	unsigned int fp_offset;
+	void *overflow_arg_area;
+	void *reg_save_area;
+} va_list[1];
+```
+- The `va_start` Macro
+	- The `va_start` macro initializes the structure as follows:
+> `reg_save_area` The element points to the start of the register save area.
+> `overflow_arg_area` This pointer is used to fetch arguments passed on the stack. It is initialized with the address of the irst argument passed on the stack, if any, and then always updated to point to the start of the next argument on the stack.
+> `gp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available general purpose argument register is saved. In case all argument registers have been exhausted, it is set to the value 48 (6 ∗ 8).
+> `fp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available floating point argument register is saved. In case all argument registers have been exhausted, it is set to the value 304 (6 ∗ 8 + 16 ∗ 16).
+
+- The `va_arg` Macro
+	- The algorithm for the generic `va_arg(l, type)` implementation is defined as follows:
+> The va_arg Macro The algorithm for the generic va_arg(l, type) implementation is defined as follows:
+	- 1. Determine whether type may be passed in the registers. If not go to step
+	- 2. Compute num_gp to hold the number of general purpose registers needed to pass type and num_fp to hold the number of floating point registers needed.
+	- 3. Verify whether arguments fit into registers. In the case:
+		- l->gp_offset > 48 − num_gp ∗ 8
+				or 
+		- l->fp_offset > 304 − num_fp ∗ 16
+	- 4. Fetch type from l->reg_save_area with an offset of l->gp_offset and/or l->fp_offset. This may require copying to a temporary location in case the parameter is passed in different register classes or requires an alignment greater than 8 for general purpose registers and 16 for XMM registers.
+	- 5. Set:
+		- l->gp_offset = l->gp_offset + num_gp ∗ 8
+		- l->fp_offset = l->fp_offset + num_fp ∗ 16
+	- 6. Return the fetched type.
+	- 7. Align l->overflow_arg_area upwards to a 16 byte boundary if alignment needed by type exceeds 8 byte boundary.
+	- 8. Fetch type from l->overflow_arg_area.
+	- 9. Set l->overflow_arg_area to:
+		- l->overflow_arg_area + sizeof(type)
+	- 10. Align l->overflow_arg_area upwards to an 8 byte boundary.
+	- 11. Return the fetched type.
+#### va_list structure
+```
+             va_list[1]
+        +----------------------+
+        |      gp_offset       |
+        |  Next GP register    |
+        +----------------------+
+        |      fp_offset       |
+        |  Next FP register    |
+        +----------------------+
+        |   overflow_arg_area  |
+        |  Stack arguments     |
+        +----------------------+
+        |    reg_save_area     |
+        |  Saved registers     |
+        +----------------------+
+
+```
+#### va_start initialization
+
+```
+                 va_start(ap, last)
+                         |
+                         v
+              +----------------------+
+              | Initialize va_list   |
+              +----------------------+
+                         |
+          +--------------+--------------+
+          |              |              |
+          v              v              v
+    reg_save_area   overflow_arg_area  gp_offset
+          |              |              |
+          v              v              v
+    Register save    First stack     Next available
+       area           argument        GP register
+                         |
+                         v
+                     fp_offset
+                         |
+                         v
+                  Next available
+                   FP register
+
+```
+
+#### va_arg algorithm
+
+```
+                  +------------------+
+                  |   va_arg(ap,T)   |
+                  +------------------+
+                           |
+                           v
+                +----------------------+
+                | Can T be passed in   |
+                | registers?           |
+                +----------------------+
+                     |             |
+                   YES             NO
+                     |             |
+                     v             |
+          +--------------------+   |
+          | Calculate num_gp   |   |
+          | and num_fp         |   |
+          +--------------------+   |
+                     |             |
+                     v             |
+          +--------------------+   |
+          | Enough registers   |   |
+          | available?         |   |
+          +--------------------+   |
+                |          |       |
+               YES         NO      |
+                |          |       |
+                v          |       |
+       +----------------+  |       |
+       | Fetch argument |  |       |
+       | from register  |  |       |
+       | save area      |  |       |
+       +----------------+  |       |
+                |          |       |
+                v          |       |
+       +----------------+  |       |
+       | Update         |  |       |
+       | gp_offset and  |  |       |
+       | fp_offset      |  |       |
+       +----------------+  |       |
+                |          |       |
+                v          v       v
+          +------------------------+
+          | Align overflow_arg_area|
+          | if required             |
+          +------------------------+
+                     |
+                     v
+          +------------------------+
+          | Fetch argument from    |
+          | stack memory           |
+          +------------------------+
+                     |
+                     v
+          +------------------------+
+          | Update overflow_arg_   |
+          | area pointer            |
+          +------------------------+
+                     |
+                     v
+          +------------------------+
+          | Align pointer to       |
+          | 8-byte boundary        |
+          +------------------------+
+                     |
+                     v
+              +-------------+
+              | Return type |
+              +-------------+
+
+```
+#### Register save area
+
+```
+              REGISTER SAVE AREA
+        +---------------------------+
+        | RDI       | GP register 1 |
+        +---------------------------+
+        | RSI       | GP register 2 |
+        +---------------------------+
+        | RDX       | GP register 3 |
+        +---------------------------+
+        | RCX       | GP register 4 |
+        +---------------------------+
+        | R8        | GP register 5 |
+        +---------------------------+
+        | R9        | GP register 6 |
+        +---------------------------+
+        | XMM0      | FP register 1 |
+        +---------------------------+
+        | XMM1      | FP register 2 |
+        +---------------------------+
+        | ...       | ...           |
+        +---------------------------+
+        | XMM15     | FP register 16|
+        +---------------------------+
+```
+
+
+
 > Example [^1]
 ```
 #include <stdarg.h>
