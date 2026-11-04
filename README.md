@@ -58,6 +58,7 @@
     - void va_copy (va_list dest, va_list src)
 
 - Figure 3.15: Register Save Area
+
 |Register| Offset|
 |:-------|:------|
 |%rdi 	 | 0 	|
@@ -70,6 +71,7 @@
 |%xmm1 | 64|
 |...|...|
 |%xmm15| 288|
+
 > The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
 `Figure 3.15`
 ```
