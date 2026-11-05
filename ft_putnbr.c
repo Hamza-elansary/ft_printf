@@ -6,16 +6,16 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:44:04 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 08:34:38 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:19:32 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_putnbr(long  nb)
+int	ft_putnbr(long nb)
 {
 	long	count;
+	long	save_nb;
 	int		len;
-	long		save_nb;
 
 	len = 0;
 	if (nb < 0)

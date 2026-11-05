@@ -6,12 +6,12 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:25:00 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 09:27:31 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:18:30 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {
-	return (write(1, &c,1));
+	return (write(1, &c, 1));
 }

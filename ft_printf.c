@@ -6,10 +6,10 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 22:58:50 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 09:18:33 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:18:05 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_check_format(const char *str, va_list args, int *len)
 {
@@ -21,6 +21,7 @@ static int	ft_check_format(const char *str, va_list args, int *len)
 	*len += sine;
 	return (2);
 }
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;

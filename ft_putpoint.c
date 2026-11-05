@@ -6,18 +6,16 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:26:54 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 09:23:53 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:20:11 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 int	ft_putpoint(void *nb)
 {
 	unsigned long long int	nbr;
-	int			len;
-	int			sine;
+	int						len;
+	int						sine;
 
 	sine = 0;
 	len = 0;

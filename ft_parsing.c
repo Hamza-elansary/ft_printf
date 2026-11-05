@@ -6,10 +6,10 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 23:43:20 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 09:54:47 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:17:40 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_parsing(int format, va_list args)
 {
@@ -23,14 +23,14 @@ int	ft_parsing(int format, va_list args)
 	else if (format == 'd' || format == 'i')
 		sing = ft_putnbr(va_arg(args, int));
 	else if (format == 'u')
-		sing = ft_putunsigned(va_arg(args,unsigned int));
+		sing = ft_putunsigned(va_arg(args, unsigned int));
 	else if (format == 'p')
-		sing = ft_putpoint(va_arg(args,void *));
+		sing = ft_putpoint(va_arg(args, void *));
 	else if (format == 'x')
 		sing = ft_puthex(va_arg(args, unsigned int));
 	else if (format == 'X')
 		sing = ft_puthexx(va_arg(args, unsigned int));
 	else if (format == '%')
 		sing = ft_putchar('%');
-	return sing;
+	return (sing);
 }

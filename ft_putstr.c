@@ -6,15 +6,15 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 21:36:17 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 08:43:14 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:20:38 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *str)
 {
-	size_t	i;
-	int	sing;
+	size_t		i;
+	int			sing;
 
 	i = 0;
 	if (!str)

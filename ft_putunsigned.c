@@ -6,14 +6,15 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 09:33:51 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 09:52:42 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:20:58 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
+
 int	ft_putunsigned(unsigned int nbr)
 {
 	unsigned int	count;
-	int		sing;
+	int				sing;
 
 	sing = 0;
 	count = ft_len_int(nbr);

@@ -6,18 +6,18 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 21:31:17 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 08:36:35 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/04 16:22:10 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_puthex(unsigned long nb)
 {
-	char		*hex;
-	long		count;
-	unsigned long long		save_hex;
-	int			index;
-	int			len;	
+	unsigned long long	save_hex;
+	char				*hex;
+	long				count;
+	int					index;
+	int					len;
 
 	len = 0;
 	hex = "0123456789abcdef";
