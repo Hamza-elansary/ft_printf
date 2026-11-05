@@ -59,18 +59,21 @@
 
 - Figure 3.15: Register Save Area
 
-|Register| Offset|
-|:-------|:------|
-|%rdi 	 | 0 	|
-|%rsi    | 8	|
-|%rdx |16|
-|%rcx| 24|
-|%r8 | 32|
-|%r9 | 40|
+- ft_printf("%d %d %d %d %d %d", 1, 2, 3, 4 ,5 ,6);
+|Register| Offset|arg|
+|:-------|:------|:---|
+|%rdi 	 | 0 	|format ("%d %d...")|
+|%rsi    | 8	|arg 1|
+|%rdx |16|arg 2|
+|%rcx| 24|arg 3|
+|%r8 | 32|arg 4|
+|%r9 | 40|arg 5
 |%xmm0 |48|
 |%xmm1 | 64|
 |...|...|
 |%xmm15| 288|
+
+| arg 6 in stack|
 
 - The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
 `Figure 3.15`
