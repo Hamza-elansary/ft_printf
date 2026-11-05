@@ -347,60 +347,72 @@ a
 
 int main(void)
 {
-    const char* s = "Hello";
-    printf("Strings:\n"); // same as puts("Strings");
-    printf(" padding:\n");
-    printf("\t[%10s]\n", s);
-    printf("\t[%-10s]\n", s);
-    printf("\t[%*s]\n", 10, s);
-    printf(" truncating:\n");
-    printf("\t%.4s\n", s);
-    printf("\t%.*s\n", 3, s);
+	 ft_printf("\n========== STRINGS ==========\n");
+	ft_printf("Strings:\n");
+	ft_printf("[%s]\n", s);
+	ft_printf("[%.5s]\n", s);
+	ft_printf("[%10s]\n", s);
+	ft_printf("[%-10s]\n", s);
+	ft_printf("[%.*s]\n", 4, s);
+	ft_printf("[%*s]\n", 15, s);
+	ft_printf("[%10.5s]\n", s);
 
-    printf("Characters:\t%c %%\n", 'A');
+	printf("\n========== CHARACTERS ==========\n");
+	ft_printf("Character: %c\n", c);
+	ft_printf("Character: %c %c %c\n", 'A', 'B', 'C');
+	ft_printf("Percent: %%\n");
 
-    printf("Integers:\n");
-    printf("\tDecimal:\t%i %d %.6i %i %.0i %+i %i\n",
-                         1, 2,   3, 0,   0,  4,-4);
-    printf("\tHexadecimal:\t%x %x %X %#x\n", 5, 10, 10, 6);
-    printf("\tOctal:\t\t%o %#o %#o\n", 10, 10, 4);
+	printf("\n========== INTEGERS ==========\n");
+	ft_printf("%d\n", 42);
+	ft_printf("%i\n", -42);
+	ft_printf("%d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6);
+	ft_printf("%d %d %d %d %d %d %d %d\n",
+	    1, 2, 3, 4, 5, 6, 7, 8);
+	ft_printf("%d\n", INT_MAX);
+	ft_printf("%d\n", INT_MIN);
+	ft_printf("%u\n", UINT_MAX);
 
-    printf("Floating-point:\n");
-    printf("\tRounding:\t%f %.0f %.32f\n", 1.5, 1.5, 1.3);
-    printf("\tPadding:\t%05.2f %.2f %5.2f\n", 1.5, 1.5, 1.5);
-    printf("\tScientific:\t%E %e\n", 1.5, 1.5);
-    printf("\tHexadecimal:\t%a %A\n", 1.5, 1.5);
-    printf("\tSpecial values:\t0/0=%g 1/0=%g\n", 0.0 / 0.0, 1.0 / 0.0);
-
-    printf("Fixed-width types:\n");
-    printf("\tLargest 32-bit value is %" PRIu32 " or %#" PRIx32 "\n",
-                                     UINT32_MAX,     UINT32_MAX );
+	printf("\n========== HEXADECIMAL ==========\n");
+	ft_printf("%x\n", 255);
+	ft_printf("%X\n", 255);
+	ft_printf("%x %x %x %x\n", 10, 100, 255, 4096);
+	ft_printf("%p\n", s);
 }
 ```
 > Example Output
 
 ```
+
+========== STRINGS ==========
 Strings:
- padding:
-        [     Hello]
-        [Hello     ]
-        [     Hello]
- truncating:
-        Hell
-        Hel
-Characters:     A %
-Integers:
-        Decimal:        1 2 000003 0  +4 -4
-        Hexadecimal:    5 a A 0x6
-        Octal:          12 012 04
-Floating-point:
-        Rounding:       1.500000 2 1.30000000000000004440892098500626
-        Padding:        01.50 1.50  1.50
-        Scientific:     1.500000E+00 1.500000e+00
-        Hexadecimal:    0x1.8p+0 0X1.8P+0
-        Special values: 0/0=-nan 1/0=inf
-Fixed-width types:
-        Largest 32-bit value is 4294967295 or 0xffffffff
+[Hello World!]
+[Hello]
+[Hello World!]
+[Hello World!]
+[Hell]
+[   Hello World!]
+[     Hello]
+
+========== CHARACTERS ==========
+Character: A
+Character: A B C
+Percent: %
+
+========== INTEGERS ==========
+42
+-42
+1 2 3 4 5 6
+1 2 3 4 5 6 7 8
+2147483647
+-2147483648
+4294967295
+
+========== HEXADECIMAL ==========
+ff
+FF
+a 64 ff 1000
+0x...
+
 ```
 ## Step 3: write() — Output and System Calls
     
