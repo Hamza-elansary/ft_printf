@@ -95,19 +95,19 @@ typedef struct {
 	- 1. Determine whether type may be passed in the registers. If not go to step
 	- 2. Compute num_gp to hold the number of general purpose registers needed to pass type and num_fp to hold the number of floating point registers needed.
 	- 3. Verify whether arguments fit into registers. In the case:
-		- l->gp_offset > 48 − num_gp ∗ 8
+		- `l -> gp_offset > 48 − num_gp ∗ 8`
 				or 
-		- l->fp_offset > 304 − num_fp ∗ 16
+		- `l -> fp_offset > 304 − num_fp ∗ 16`
 	- 4. Fetch type from l->reg_save_area with an offset of l->gp_offset and/or l->fp_offset. This may require copying to a temporary location in case the parameter is passed in different register classes or requires an alignment greater than 8 for general purpose registers and 16 for XMM registers.
 	- 5. Set:
-		- l->gp_offset = l->gp_offset + num_gp ∗ 8
-		- l->fp_offset = l->fp_offset + num_fp ∗ 16
+		- `l -> gp_offset = l -> gp_offset + num_gp ∗ 8`
+		- `l -> fp_offset = l -> fp_offset + num_fp ∗ 16`
 	- 6. Return the fetched type.
-	- 7. Align l->overflow_arg_area upwards to a 16 byte boundary if alignment needed by type exceeds 8 byte boundary.
-	- 8. Fetch type from l->overflow_arg_area.
-	- 9. Set l->overflow_arg_area to:
-		- l->overflow_arg_area + sizeof(type)
-	- 10. Align l->overflow_arg_area upwards to an 8 byte boundary.
+	- 7. Align `l-> overflow_arg_area` upwards to a 16 byte boundary if alignment needed by type exceeds 8 byte boundary.
+	- 8. Fetch type from `l -> overflow_arg_area`.
+	- 9. Set `l -> overflow_arg_area` to:
+		- `l -> overflow_arg_area` + sizeof(type)
+	- 10. Align `l -> overflow_arg_area `upwards to an 8 byte boundary.
 	- 11. Return the fetched type.
 #### va_list structure
 ```
