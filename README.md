@@ -73,8 +73,7 @@
 |%xmm1 | 64|
 |...|...|
 |%xmm15| 288|
-
-| arg 6 in stack|
+|stack | 0x8239| arg 6|
 
 - The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
 `Figure 3.15`
