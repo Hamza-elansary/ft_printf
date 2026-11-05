@@ -72,7 +72,7 @@
 |...|...|
 |%xmm15| 288|
 
-> The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
+- The va_list type is an array containing a single element of one structure containing the necessary information to implement the va_arg macro. The C definition of va_list type is given in figure 3.16.
 `Figure 3.15`
 ```
 typedef struct {
@@ -84,14 +84,14 @@ typedef struct {
 ```
 - The `va_start` Macro
 	- The `va_start` macro initializes the structure as follows:
-> `reg_save_area` The element points to the start of the register save area.
-> `overflow_arg_area` This pointer is used to fetch arguments passed on the stack. It is initialized with the address of the irst argument passed on the stack, if any, and then always updated to point to the start of the next argument on the stack.
-> `gp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available general purpose argument register is saved. In case all argument registers have been exhausted, it is set to the value 48 (6 ∗ 8).
-> `fp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available floating point argument register is saved. In case all argument registers have been exhausted, it is set to the value 304 (6 ∗ 8 + 16 ∗ 16).
+- `reg_save_area` The element points to the start of the register save area.
+- `overflow_arg_area` This pointer is used to fetch arguments passed on the stack. It is initialized with the address of the irst argument passed on the stack, if any, and then always updated to point to the start of the next argument on the stack.
+- `gp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available general purpose argument register is saved. In case all argument registers have been exhausted, it is set to the value 48 (6 ∗ 8).
+- `fp_offset` The element holds the offset in bytes from reg_save_area to the place where the next available floating point argument register is saved. In case all argument registers have been exhausted, it is set to the value 304 (6 ∗ 8 + 16 ∗ 16).
 
 - The `va_arg` Macro
 	- The algorithm for the generic `va_arg(l, type)` implementation is defined as follows:
-> The va_arg Macro The algorithm for the generic va_arg(l, type) implementation is defined as follows:
+- The va_arg Macro The algorithm for the generic va_arg(l, type) implementation is defined as follows:
 	- 1. Determine whether type may be passed in the registers. If not go to step
 	- 2. Compute num_gp to hold the number of general purpose registers needed to pass type and num_fp to hold the number of floating point registers needed.
 	- 3. Verify whether arguments fit into registers. In the case:
