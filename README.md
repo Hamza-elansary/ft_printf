@@ -60,6 +60,7 @@
 - Figure 3.15: Register Save Area
 
 - ft_printf("%d %d %d %d %d %d", 1, 2, 3, 4 ,5 ,6);
+
 |Register| Offset|arg|
 |:-------|:------|:---|
 |%rdi 	 | 0 	|format ("%d %d...")|
