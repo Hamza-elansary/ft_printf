@@ -1,4 +1,4 @@
-*f the 42 curriculum by heal-ans*
+*This project has been created as part of the 42 curriculum by hael-ans*
 
 # FTPRINTF
 ## Description
