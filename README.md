@@ -646,6 +646,7 @@ cc main.c -L. -lftprintf -o test
 # Resources
 > us AI
 - I only used AI to explain a few simple concepts that I didn't fully understand. I tried to follow the old-school approach by doing my own research and looking up information on Google to learn things independently.
+-  I used AI to help me write the README.md file.
   
 [^1]: [Variadic](https://en.cppreference.com/c/variadic)
 [^2]: [printf](https://en.cppreference.com/c/io/fprintf)
