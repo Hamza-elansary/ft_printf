@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Wixtra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC = ft_len_hex.c  ft_parsing.c  ft_putchar.c  ft_putheX.c  ft_putpoint.c  ft_putunsigned.c \
       ft_len_int.c  ft_printf.c   ft_puthex.c   ft_putnbr.c  ft_putstr.c
 
@@ -11,7 +11,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 %.o: %.c ft_printf.h
-	$(CC) $(CFLAGE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
