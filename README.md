@@ -580,7 +580,29 @@ validate_args (char *format, int nargs, OBJECT *args)
     - [] Empty output
     - [] Compare the return value with the original printf
 
+## Project Structure
 
+```
+root/
+│
+├── Makefile              # Compiles the source files and creates the library.
+├── README.md             # Contains project information, instructions, and documentation.
+├── ft_printf.h           # Header file containing function prototypes and required libraries.
+│
+├── ft_printf.c            # Main function that processes the format string and prints characters.
+├── ft_parsing.c           # Handles format specifiers and calls the appropriate printing functions.
+│
+├── ft_putchar.c           # Prints a single character (%c).
+├── ft_putstr.c             # Prints a string (%s).
+├── ft_putnbr.c             # Prints a signed integer (%d and %i).
+├── ft_putunsigned.c        # Prints an unsigned integer (%u).
+├── ft_puthex.c             # Prints a hexadecimal number in lowercase (%x).
+├── ft_putheX.c             # Prints a hexadecimal number in uppercase (%X).
+├── ft_putpoint.c           # Prints a memory address in hexadecimal format (%p).
+│
+├── ft_len_int.c            # Calculates the number of digits in an integer.
+└── ft_len_hex.c            # Calculates the number of digits in a hexadecimal number.
+```
 
 
 
