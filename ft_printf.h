@@ -6,7 +6,7 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 10:46:28 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/05 17:36:06 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/20 14:29:16 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
@@ -23,8 +23,8 @@ int					ft_putchar(int c);
 int					ft_putstr(char *str);
 int					ft_putnbr(long nb);
 int					ft_putunsigned(unsigned int nbr);
-int					ft_puthex(unsigned long nb);
-int					ft_puthexx(unsigned long nb);
+int					ft_puthex_lo(unsigned long nb);
+int					ft_puthex_up(unsigned long nb);
 int					ft_putpoint(void *nb);
 
 unsigned int		ft_len_int(unsigned int nbr);

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putheX.c                                        :+:      :+:    :+:   */
+/*   ft_puthex_up.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 21:20:25 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 16:18:50 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/20 16:47:07 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_puthexx(unsigned long nb)
+int	ft_puthex_up(unsigned long nb)
 {
 	char		*hex;
 	long		count;

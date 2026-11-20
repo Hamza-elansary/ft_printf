@@ -6,7 +6,7 @@
 /*   By: hael-ans <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:26:54 by hael-ans          #+#    #+#             */
-/*   Updated: 2026/11/04 16:20:11 by hael-ans         ###   ########.fr       */
+/*   Updated: 2026/11/20 16:38:41 by hael-ans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -25,7 +25,7 @@ int	ft_putpoint(void *nb)
 	sine = ft_putstr("0x");
 	if (sine == -1)
 		return (-1);
-	len = ft_puthex(nbr);
+	len = ft_puthex_lo(nbr);
 	if (len == -1)
 		return (-1);
 	return (len +2);
