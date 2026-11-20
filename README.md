@@ -641,6 +641,11 @@ int main(void)
 ```
 cc main.c -L. -lftprintf -o test
 ```
+- or with main.c file
+```
+cc -Wall -Wextra -Werror -g main.c -L. -lftprintf -o test
+```
+- run test `./test`
 
 
 # Resources
